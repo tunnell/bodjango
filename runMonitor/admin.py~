@@ -1,0 +1,5 @@
+from django.contrib import admin
+from runMonitor.models import runInfo
+# Register your models here.
+
+admint.site.register(runInfo)

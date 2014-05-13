@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+<title>XENON1T Online Monitoring: Log</title>
+
+{% block content %}
+
+<div class="span1">
+<p><a href="/log/newlogentry/" class="btn btn-primary btn-small"> NewEntry </a></p>
+</div>
+<br></br>
+{% if latest_message_list %}
+<table class="table table-striped" style="width:95%">
+<tbody>
+<tr>
+   <th> Time </th>
+   <th> Message </th>
+</tr>
+{% for logEntry in latest_message_list %}
+<tr> 
+  <td><bold> {{logEntry.time}} </bold></td>
+  <!-- syntax coloring -->
+  {% if logEntry.priority == 2 %}
+  <td><font color = "f98802"> {{ logEntry.message }}</font></td>
+  {% elif logEntry.priority == 3 %}
+  <td><font color = "ff0000"> {{ logEntry.message }}</font></td>
+  {% elif logEntry.priority == 4 %}
+  <td><font color = "0036ff"> {{ logEntry.message }}</font></td>
+  {% elif logEntry.priority == 5 %}
+  <td><font color = "007b11"> {{ logEntry.message }}</font></td>
+  {% else %}
+  <td>{{ logEntry.message }}</td>   
+  {% endif %}
+  
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% else %}
+<p>No log entries available.</p>
+{% endif %}
+
+<br></br>
+<div class="span1">
+<p><a href="../" class="btn btn-primary btn-large">&laquo; Home</a></p>
+</div>
+
+{% endblock %}

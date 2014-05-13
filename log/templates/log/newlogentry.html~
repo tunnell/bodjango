@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+<title>XENON1T Online Monitoring: Log</title>
+
+{% block content %}
+
+<div class="span1">
+<p><a href="/log/" class="btn btn-primary btn-small"> Back </a></p>
+</div>
+<br></br>
+
+<div class="span1">
+<form action="/log/newlogentry/" method="post">{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Submit" />
+</form>
+</div>
+
+{% endblock %}

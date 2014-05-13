@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load staticfiles %}
+
+<div class="panel panel-default">
+   <div id="uptime_panel" class="panel-body" style="width:30%;height:314px;auto"></div>
+
+<br></br>
+<div id="table_panel">
+{% if latest_run_list %}
+<table class="table table-striped" style="width:95%">
+<tbody>
+<tr>
+   <th> Run Name </th>
+   <th> Started by </th>
+   <th> Mode       </th>
+   <th> Type </th>
+   <th> Start Time </th>
+   <th> End Time </th>
+   
+</tr>
+   {% for run in latest_run_list %}
+      <tr>
+        <td> {{run.name}} </td>
+	<td> {{ run.user }}</td>
+	<td> {{run.runmode}}</td>
+	<td> {{run.runtype}}</td>
+	<td> {{run.starttimestamp}}</td>
+	<td> {{run.endtimestamp}}</td>
+      </tr>
+    {% endfor %}
+</tbody>
+</table>
+{% else %}
+<p>No run information available.</p>
+{% endif %}
+</div>
+</div>
+			
+<script type="text/javascript">
+$(function(){
+ 
+  //uptime chart
+  var totalUptimeOptions = {
+      chart: {
+          renderTo: 'uptime_panel'
+	  },
+      legend: {enabled: true},
+      title: {text: 'Uptime'},
+      series: [{
+          type: 'pie', 
+	  data: [{}],
+       }],
+   };
+   var chartDataUrl = "{% url 'uptimedata' %}?days=0"; //<!-- 0 days means all-->
+   $.getJSON(chartDataUrl,function(data){
+   totalUptimeOptions.series[0].data = [['uptime', data['uptime']], ['downtime' ,data['downtime']]];
+   
+   var chart = new Highcharts.Chart(totalUptimeOptions);
+    });
+
+} );
+
+</script>
+<br></br>
+
+<p><a href="../" class="btn btn-primary btn-large">&laquo; Back</a></p>
+
+{% endblock %}

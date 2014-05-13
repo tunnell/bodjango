@@ -1,0 +1,9 @@
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+<strong>{% load chartit %}</strong>
+<strong>{{ rundatachart|load_charts:"container" }}</strong>
+</head>
+<body>
+   <div id="container">  </div>
+</body>

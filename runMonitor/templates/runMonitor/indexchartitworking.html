@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+   <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+   <strong>{% load chartit %}</strong>
+   <strong>{{ rundatachart|load_charts:"container" }}</strong>
+
+<div id="container">  </div>
+
+<br></br>
+<p><a href="../" class="btn btn-primary btn-large">&laquo; Back</a></p>
+
+{% endblock %}

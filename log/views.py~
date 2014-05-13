@@ -1,0 +1,27 @@
+from django.http import HttpResponse, HttpResponsePermanentRedirect
+from django.template import RequestContext, loader
+from django.shortcuts import render
+import datetime
+# Create your views here.
+
+from log.models import LogEntry, NewLog
+
+def index(request):
+    latest_message_list = LogEntry.objects.order_by('-time')[:500]
+    template = loader.get_template('log/index.html')
+    context = RequestContext(request, {
+        'latest_message_list': latest_message_list
+    })
+    #output = ', '.join([p.message for p in latest_message_list])
+    return HttpResponse(template.render(context))
+
+def newlogentry(request):
+    if request.method == 'POST':
+        new_form = NewLog(request.POST)            
+        if new_form.is_valid():
+            new_entry = LogEntry(message=new_form.cleaned_data['message'], priority=5)
+            new_entry.save()        
+        return HttpResponsePermanentRedirect('/log/')
+    else:
+        new_form = NewLog()
+    return render(request, 'log/newlogentry.html', {'form':new_form,})
