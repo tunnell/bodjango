@@ -6,9 +6,10 @@ from runMonitor import views
 
 urlpatterns = patterns('',
 #   url(r'^$', TemplateView.as_view(template_name='runMonitor/index.html')),
-   url(r'^uptimedata', views.uptimedata, name='uptimedata'),
    url(r'^$', views.index, name='index'),
-#    url(r'^$', TemplateView.as_view(template_name='runMonitor/index.html')),
+   url(r'^uptimedata', views.uptimedata, name='uptimedata'),
+   url(r'^/about', TemplateView.as_view(template_name='runMonitor/about.html')),
+   #    url(r'^$', TemplateView.as_view(template_name='runMonitor/index.html')),
 
 )
 

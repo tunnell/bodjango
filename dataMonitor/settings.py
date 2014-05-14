@@ -148,6 +148,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'log',
     'django_mongodb_engine',
+    'control',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'

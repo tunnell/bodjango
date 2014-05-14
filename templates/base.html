@@ -39,32 +39,36 @@
     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
      -->
      <!-- {% if not debug %}{% include "analytics.html" %}{% endif %} -->
-  </head>
+     {% block head %}
+     {% endblock %}
+     </head>
 
   <body>
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+<!--    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="containter">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">XENON1T Online Monitoring</a>
+	  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="/">XENON1T Online Monitoring</a>
-          <div class="nav-collapse collapse pull-right">
-            <ul class="nav">
-              <li class="active"><a href="/">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="mailto:daniel.coderre@lhep.unibe.ch?subject=Your-monitoring-site-is-really-cool">Contact</a></li>
-              <li class="dropdown">
+          </button>
+       </div> <!-- close header -->
+    <!--   <div class="nav-collapse collapse pull-right">
+          <ul class="nav navbar-nav">
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="mailto:daniel.coderre@lhep.unibe.ch?subject=Your-monitoring-site-is-really-cool">Contact</a></li>
+	  </ul>
+<!--              <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Navigate <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><a href="/runs/">Run history</a></li>
                   <li><a href="#">Online data</a></li>
                   <li><a href="/log/">DAQ Logbook</a></li>
                   <li class="divider"></li>
-                  <li class="nav-header">Outside</li>
+                  <li class="dropdown-header">Outside</li>
 		  <li><a href="http://www.xenon1t.org">XENON1T.org</a></li>
                   <li><a href="https://xecluster.lngs.infn.it/dokuwiki/doku.php">XENON1T wiki</a></li>
                   <li><a href="http://www.lhep.unibe.ch/darkmatter">Uni Bern XENON Page</a></li>
@@ -76,11 +80,45 @@
               <input class="span2" type="password" placeholder="Password">
               <button type="submit" class="btn">Sign in</button>
             </form>-->
-          </div><!--/.nav-collapse -->
-        </div>
+    <!--      </div><!--/.nav-collapse -->
+    <!--  </div>
+    </div> ..>
+    
+    <!-- Fixed navbar -->
+      <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+	  <div class="navbar-header">
+	    <button type="button" class="navbar-toggle"
+	      data-toggle="collapse" data-target=".navbar-collapse">
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	    </button>
+	  <a class="navbar-brand" href="/">XENON1T Online Monitor</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav pull-right">
+	  <li class="active"><a href="/">Home</a></li>
+	  <li><a href="/about">About</a></li>
+	  <li><a href=""mailto:daniel.coderre@lhep.unibe.ch?subject=Your-monitoring-site-is-awesome">Contact</a></li>
+	  <li class="dropdown">
+	  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Navigation <b class="caret"></b></a>
+	  <ul class="dropdown-menu">
+	    <li><a href="/runs/">Run history</a></li>
+	    <li><a href="#">Online data</a></li>
+	    <li><a href="/log/">DAQ Logbook</a></li>
+	    <li class="divider"></li>
+	    <li class="dropdown-header">Outside</li>
+	    <li><a href="http://www.xenon1t.org">XENON1T.org</a></li>
+	    <li><a href="https://xecluster.lngs.infn.it/dokuwiki/doku.php">XENON1T wiki</a></li>
+	    <li><a href="http://www.lhep.unibe.ch/darkmatter">Uni Bern XENON Page</a></li>
+	  </ul>
+	  </li>
+	</ul>
+      </div><!--/.nav-collapse -->
       </div>
     </div>
-
+    
   {% comment %}
   <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
@@ -106,7 +144,7 @@
     <div class="container">
       {% if messages %}
       <div class="row">
-        <div class="span12">
+        <div class="col-md-12">
           {% for message in messages %}
           <div class="alert alert-{{message.tags}}">
             <strong>{{message.tags|title}}:</strong> {{message}}
@@ -121,46 +159,46 @@
       {% endif %}
 {% block content %}
       <!-- Main hero unit for a primary marketing message or call to action -->
-      <div class="hero-unit">
+      <div class="jumbotron">
         <div class="row">
-	  <div class="span3">
+	<div class="col-md-3">
  	    <a href="/"><img src="{{STATIC_URL|default:"/s/"}}img/logo_xenon_half.png" /></a>
 	  </div>
-	  <div class="span3">
+	  <div class="col-md-3">
 	    <h1>Welcome!</h1>
             <p>This should become a nice online monitoring site for the XENON1T DAQ and event builder.</p>
 	  </div>
-	  <div class="span3">
+	  <div class="col-md-3">
 	    <br></br>
 	    <br></br>
-	    <p><a href="dash.html" class="btn btn-primary btn-large">My dashboard &raquo;</a></p>
+	    <p><a href="/control" class="btn btn-primary btn-lg">My dashboard &raquo;</a></p>
 	  </div>
 	</div>
       </div>
 
       <!-- Example row of columns -->
       <div class="row">
-        <div class="span4">
-          <h2>Run history</h2>
+        <div class="col-md-4" style="padding-left: 20px";>
+	  <h2>Run history</h2>
           <p>Display runs and processing statistics. See which runs are at which stages of acquisition and processing. Take a look at the DAQ and event builder acquisition history. </p>
-          <p><a href="runs/" class="btn" href="#">View details &raquo;</a></p>
+          <p><a href="/runs/" class="btn" href="#">View details &raquo;</a></p>
         </div>
-        <div class="span4">
+        <div class="col-md-4">
           <h2>Online data</h2>
           <p>Take a look at some data quality diagnostics. Look at detector occupancy, look at hit patterns, and see some example waveforms. </p>
           <p><a class="btn" href="#">View details &raquo;</a></p>
        </div>
-        <div class="span4">
+        <div class="col-md-4">
           <h2>DAQ Logbook</h2>
           <p>Look at the DAQ logbook and see what's been going on with the experiment.</p>
-          <p><a href="log/" class="btn" href="#">View details &raquo;</a></p>
+          <p><a href="/log/" class="btn" href="#">View details &raquo;</a></p>
         </div>
       </div>
 {% endblock %}
       <hr>
 
       <footer>
-        <p>&copy; Daniel Coderre 2014</p>
+        <p>&copy; Bern DAQ Group 2014</p>
       </footer>
 
     </div> <!-- /container -->
