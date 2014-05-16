@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="span1" style="padding-left: 20px">
+<p><a href="/control/" class="btn btn-primary btn-small"> Back </a></p>
+</div>
+<br>
+
+<div style="padding-left: 30px"><h2> Stop the current run: </h2></div>
+<br>
+<form action="/control/newrun/" method="post" style="padding-left: 50px">
+{% csrf_token %}
+    <p> You'll need to provide your name : <input type = "text" name = "name"></p>
+    
+    <br>
+    <input type="checkbox" name="mode" value="none">  I am sure I want to stop the run<br>
+    <br>
+<input type=submit value="Stop" name="command" />
+</form>
+
+
+{% endblock %}

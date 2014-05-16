@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="span1" style="padding-left: 20px">
+<p><a href="/control/" class="btn btn-primary btn-small"> Back </a></p>
+</div>
+<br>
+
+<div style="padding-left: 30px"><h2> Start a new run: </h2></div>
+<br>
+<form action="/control/newrun/" method="post" style="padding-left: 50px">
+{% csrf_token %}
+    <p> Your name : <input type = "text" name = "name"></p>
+    <div class="radio">
+      <label>
+        <input type="radio" name="mode" id="mode1" value="dpp_dppon_nowrite" checked>
+	DPP firmware, DPP enabled. No writing.
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="mode" id="mode2" value="dpp_dppoff_nowrite">
+        DPP firmware, DPP disabled. No writing.
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="mode" id="mode3" value="dpp_dppon_file">
+	DPP firmware, DPP enabled. Write to file (/home/dan/data).
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="mode" id="mode4" value="dpp_dppoff_file">
+	DPP firmware, DPP disabled. Write to file (/home/dan/data).
+      </label>
+    </div>
+      <div class="radio">
+        <label>
+	  <input type="radio" name="mode" id="mode5" value="dpp_dppon_veto_nowrite">
+	  DPP firmware, DPP enabled, Veto enabled, no writing.
+	</label>	      
+      </div>
+				    
+<input type=submit value="Start" name="command" />
+</form>
+
+
+{% endblock %}

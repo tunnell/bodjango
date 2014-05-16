@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load chartit %}
+{% block head %}
+{{ ratesmonitor_chart|load_charts:"rates_panel" }}
+{% endblock %}
+{% block content %}
+
+
+<div class="container">
+  <a href="#"><strong><i class="glyphicon glyphicon-dashboard"></i> Reader Dashboard</strong></a>
+      <hr>
+  <div class="row">
+    <div class="col-md-8">     
+      <!-- column 2 -->
+
+<!--      <div class="row">	    
+        <!-- center left-->
+<!--        <div class="col-md-9"> -->
+          <div class="panel panel-default"> <!-- GRAPH -->
+	    <div id="rates_panel" class="panel-body" style="width:95%;height:400px;auto">
+	    </div>
+	  </div>
+	  <hr>			                  	 
+	  <!-- control buttons -->
+	  <div class="btn-group btn-group-justified">
+	    <a class="btn btn-success" href="/control/newrun"><i class="glyphicon glyphicon-plus"></i><br> New Run  </a>
+	    <a href="/control/stoprun" class="btn btn-danger col-sm-3">
+	      <i class="glyphicon glyphicon-remove"></i><br> Stop DAQ  </a>
+	    <a href="/log" class="btn btn-info col-sm-3">
+              <i class="glyphicon glyphicon-pencil"></i><br> Logbook </a>
+	    <a href="/control/help" class="btn btn-primary col-sm-3">
+	      <i class="glyphicon glyphicon-question-sign"></i><br> Help </a>
+	  </div> <!-- end button group -->        
+	  <hr>
+      </div>
+<!--      </div>
+    </div>-->
+    <!-- status -->						       
+    <!--/col-->
+    <div class="col-md-4"> <!-- RIGHT COL -->
+      <div class="panel panel-default">
+	<div class="panel-heading"><h4>DAQ Status</h4></div>
+	<div class="panel-body">
+	  <div class="list-group">
+	    {% if currentStatus.state == "Running" %}
+	    <h4><span class="label label-success">{{ currentStatus.state }} </span></h4>
+	    {% elif currentStatus.state == "Idle" %}
+	    <h4><span class="label label-danger">{{ currentStatus.state }} </span></h4>
+	     {% elif currentStatus.state == "Armed" %}
+	     <h4><span class="label label-warning">{{ currentStatus.state }} </span></h4>
+	     {% else %}
+	     <h4><span class="label label-default">{{ currentStatus.state }} </span></h4>
+	     {% endif %}	     
+	     <br>
+	     <a class="list-group-item"><b>Mode:</b>     {{ currentStatus.mode }} </a>
+	     <a class="list-group-item"><b>Run Name:</b> {{ currentStatus.currentRun }} </a>
+	     <a class="list-group-item"><b>Started by:</b> {{ currentStatus.startedBy }} </a>
+	     <a class="list-group-item"><b> Connected clients:</b> {{currentStatus.numSlaves }} </a>
+	     <a class="list-group-item"><b> Information updated:</b> {{currentStatus.createdAt}}</a>
+	  </div>
+	</div>
+      </div>
+    </div> <!-- right col -->
+    
+  </div>
+</div>
+
+<br></br>
+
+<div style="padding-left: 20px">
+<p><a href="../" class="btn btn-primary btn-large">&laquo; Back</a></p>
+</div>
+
+{% endblock %}
