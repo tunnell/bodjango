@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+
+<div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-heading"><h2>Help!</h2>
+      <div class="panel-body">
+	<strong>Need help?</strong>
+	<br>
+	<br>
+	If you have questions about the DAQ or event builder monitoring site, please contact the developers. We can be reached at the DAQ <a href="mailto:xe-daq@lngs.infn.it?Subject=Help-with-online-monitor">mail list.</a>
+	  <br>
+	  <br>
+	  You can also use the following link to start a hangout with the devs (google account required) for instant support.
+	  <br>
+	  <br>
+	  <g:hangout render="createhangout" invites="[{ id :'coderdj@gmail.com', invite_type : 'EMAIL'}"></g:hangout>
+	  <br>
+	</div>
+    </div>
+  </div>
+</div>
+
+<br>
+  
+<div>
+  <div style="padding-left: 20px">
+    <p><a href="/trigger" class="btn btn-primary btn-large">&laquo; Back</a></p>
+    <br>
+    <p><a href="/" class="btn btn-primary btn-large"><i class="glyphicon glyphicon-home"></i> Home</a></p>
+  </div>
+</div>
+
+
+{% endblock %}

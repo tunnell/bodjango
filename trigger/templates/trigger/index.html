@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load chartit %}
+{% block head %}
+{{ ratesmonitor_chart|load_charts:"rates_panel" }}
+{% endblock %}
+{% block content %}
+
+
+<div class="container">
+  <a href="#"><strong><i class="glyphicon glyphicon-dashboard"></i> Reader Dashboard</strong></a>
+      <hr>
+  <div class="row">
+    <div class="col-md-8">     
+      <!-- column 2 -->
+
+<!--      <div class="row">	    
+        <!-- center left-->
+<!--        <div class="col-md-9"> -->
+          <div class="panel panel-default"> <!-- GRAPH -->
+	    <div id="rates_panel" class="panel-body" style="width:95%;height:400px;auto">
+	    </div>
+	  </div>
+	  <hr>			                  	 
+	  <!-- trigger buttons -->
+	  <div class="btn-group btn-group-justified">
+	    <a class="btn btn-success" href="/trigger/newrun"><i class="glyphicon glyphicon-plus"></i><br> New Run  </a>
+	    <a href="/trigger/stoprun" class="btn btn-danger col-sm-3">
+	      <i class="glyphicon glyphicon-remove"></i><br> Stop DAQ  </a>
+	    <a href="/log" class="btn btn-info col-sm-3">
+              <i class="glyphicon glyphicon-pencil"></i><br> Logbook </a>
+	    <a href="/trigger/help" class="btn btn-primary col-sm-3">
+	      <i class="glyphicon glyphicon-question-sign"></i><br> Help </a>
+	  </div> <!-- end button group -->        
+	  <hr>
+      </div>
+<!--      </div>
+    </div>-->
+    <!-- status -->						       
+    <!--/col-->
+    
+  </div>
+</div>
+
+<br></br>
+
+<div style="padding-left: 20px">
+<p><a href="../" class="btn btn-primary btn-large">&laquo; Back</a></p>
+</div>
+
+{% endblock %}
