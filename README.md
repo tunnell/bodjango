@@ -31,7 +31,7 @@ Install some stuff for MongoDB access:
 
 Then you must also install the following:
 
-    $ pip install django-debug-toolbar south django_chartit
+    $ pip install django-debug-toolbar south django_chartit simplejson
 
 You should then be able to do:
 
