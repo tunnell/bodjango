@@ -44,9 +44,10 @@ $(function(){
   //uptime chart
   var totalUptimeOptions = {
       chart: {
-          renderTo: 'uptime_panel'
+          renderTo: 'uptime_panel',
 	  },
       legend: {enabled: true},
+      credits: {enabled: false},
       title: {text: 'Uptime'},
       series: [{
           type: 'pie', 

@@ -9,7 +9,7 @@
 <br></br>
 <div id="table_panel">
 {% if latest_run_list %}
-<table class="table table-striped" style="width:95%">
+<table class="table table-striped" style="width:95%";title="Recent Runs">
 <tbody>
 <tr>
    <th> Run Name </th>
@@ -44,7 +44,8 @@ $(function(){
   //uptime chart
   var totalUptimeOptions = {
       chart: {
-          renderTo: 'uptime_panel'
+          renderTo: 'uptime_panel',
+	  credits: { enabled: false },
 	  },
       legend: {enabled: true},
       title: {text: 'Uptime'},

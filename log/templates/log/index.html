@@ -3,10 +3,13 @@
 
 {% block content %}
 
+<div style="padding-left: 20px">
+<h2> Latest log entries: </h2>
+<br>
 <div class="span1">
-<p><a href="/log/newlogentry/" class="btn btn-primary btn-small"> NewEntry </a></p>
-</div>
-<br></br>
+  <p><a href="/log/newlogentry/" class="btn btn-primary btn-small"> NewEntry </a></p>
+  </div>
+<br>
 {% if latest_message_list %}
 <table class="table table-striped" style="width:95%">
 <tbody>
@@ -38,4 +41,5 @@
 <p>No log entries available.</p>
 {% endif %}
 
+</div>
 {% endblock %}

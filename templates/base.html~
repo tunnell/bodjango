@@ -21,7 +21,7 @@
     <link href="{{STATIC_URL|default:"/s/"}}css/bootstrap-responsive.min.css" rel="stylesheet">
     <script src="{{ STATIC_URL}}js/bootstrap.min.js"></script>
 
-
+    <script type="text/javascript" src="https://apis.google.com/js/platform.js"></script>
     <script src="{{STATIC_URL|default:"/s/"}}js/jquery.min.js"></script>
     <script src="{{STATIC_URL|default:"/s/"}}js/highcharts.js"></script>
     
@@ -100,10 +100,11 @@
         <ul class="nav navbar-nav pull-right">
 	  <li class="active"><a href="/">Home</a></li>
 	  <li><a href="/about">About</a></li>
-	  <li><a href=""mailto:daniel.coderre@lhep.unibe.ch?subject=Your-monitoring-site-is-awesome">Contact</a></li>
+	  <li><a href="mailto:daniel.coderre@lhep.unibe.ch?subject=Your-monitoring-site-is-awesome">Contact</a></li>
 	  <li class="dropdown">
 	  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Navigation <b class="caret"></b></a>
 	  <ul class="dropdown-menu">
+	    <li><a href="/control/">DAQ Control</a></li>
 	    <li><a href="/runs/">Run history</a></li>
 	    <li><a href="#">Online data</a></li>
 	    <li><a href="/log/">DAQ Logbook</a></li>
@@ -159,33 +160,43 @@
       {% endif %}
 {% block content %}
       <!-- Main hero unit for a primary marketing message or call to action -->
-      <div class="jumbotron">
+      <div class="jumbotron"
+      style="background-image:url({{STATIC_URL}}img/logo_jumbo.png);
+background-repeat:no-repeat; color:#428bca; height:425px;">
+<div class="container">
+<!--      <img src="{{STATIC_URL}}img/logo_jumbo.png"
+class="img-responsive" alt="Reponsive image">-->
         <div class="row">
-	<div class="col-md-3">
- 	    <a href="/"><img src="{{STATIC_URL|default:"/s/"}}img/logo_xenon_half.png" /></a>
-	  </div>
-	  <div class="col-md-3">
+<!--	<div class="col-md-2" style="padding-left=20px">
+	  <br>
+<!--	  <a href="/"><img
+<src="{{STATIC_URL|default:"/s/"}}img/logo_xenon_half.png"
+style="height:auto; width:auto; max-height:100px;"></a>-->
+<!--	</div> -->
+<div class="col-md-5">
+</div>
+	<div class="col-md-9">
+	<br>
+	<br>
 	    <h1>Welcome!</h1>
-            <p>This should become a nice online monitoring site for the XENON1T DAQ and event builder.</p>
-	  </div>
-	  <div class="col-md-3">
-	    <br></br>
-	    <br></br>
-	    <p><a href="dash.html" class="btn btn-primary btn-lg">My dashboard &raquo;</a></p>
-	  </div>
+            <p>You've landed at the online monitoring site for the XENON1T DAQ and event builder.</p>
+	  <br>
+	    <br><br>
+	    <p><a href="/control" class="btn btn-primary btn-lg">Dashboard &raquo;</a></p>
+	    </div>
 	</div>
       </div>
-
+      </div>
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-md-4" style="padding-left: 20px";>
 	  <h2>Run history</h2>
-          <p>Display runs and processing statistics. See which runs are at which stages of acquisition and processing. Take a look at the DAQ and event builder acquisition history. </p>
+          <p>See an overview of what data has been taken and what stage of processing it has reached. See some statistics of what type of data has been taken and how large the runs are.</p>
           <p><a href="/runs/" class="btn" href="#">View details &raquo;</a></p>
-        </div>
+	</div>
         <div class="col-md-4">
           <h2>Online data</h2>
-          <p>Take a look at some data quality diagnostics. Look at detector occupancy, look at hit patterns, and see some example waveforms. </p>
+          <p>Take a look at some data quality diagnostics. Look at detector occupancy and see some example waveforms. </p>
           <p><a class="btn" href="#">View details &raquo;</a></p>
        </div>
         <div class="col-md-4">
@@ -195,11 +206,13 @@
         </div>
       </div>
 {% endblock %}
-      <hr>
-
+      
+      
       <footer>
-        <p>&copy; Bern DAQ Group 2014</p>
+      <hr>
+      <p>&copy; Bern DAQ Group 2014</p>
       </footer>
+      
 
     </div> <!-- /container -->
     <script src="{{STATIC_URL|default:"/s/"}}js/bootstrap.min.js"></script>
