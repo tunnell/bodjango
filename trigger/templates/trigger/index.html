@@ -8,7 +8,7 @@
 
 
 <div class="container">
-  <a href="#"><strong><i class="glyphicon glyphicon-dashboard"></i> Reader Dashboard</strong></a>
+  <a href="#"><strong><i class="glyphicon glyphicon-dashboard"></i> Trigger Dashboard</strong></a>
       <hr>
   <div class="row">
     <div class="col-md-8">     
@@ -24,11 +24,8 @@
 	  <hr>			                  	 
 	  <!-- trigger buttons -->
 	  <div class="btn-group btn-group-justified">
-	    <a class="btn btn-success" href="/trigger/newrun"><i class="glyphicon glyphicon-plus"></i><br> New Run  </a>
-	    <a href="/trigger/stoprun" class="btn btn-danger col-sm-3">
-	      <i class="glyphicon glyphicon-remove"></i><br> Stop DAQ  </a>
-	    <a href="/log" class="btn btn-info col-sm-3">
-              <i class="glyphicon glyphicon-pencil"></i><br> Logbook </a>
+	    <a href="/trigger/flush" class="btn btn-danger col-sm-3">
+	      <i class="glyphicon glyphicon-remove"></i><br> Flush data  </a>
 	    <a href="/trigger/help" class="btn btn-primary col-sm-3">
 	      <i class="glyphicon glyphicon-question-sign"></i><br> Help </a>
 	  </div> <!-- end button group -->        
@@ -41,6 +38,39 @@
     
   </div>
 </div>
+
+<br></br>
+
+<div id="table_panel">
+{% if db_stats %}
+<table class="table table-striped" style="width:95%";title="Input DB">
+<tbody>
+<tr>
+   <th> Key </th>
+   <th> Value </th>
+</tr>
+   {% for x,y in db_stats %}
+      <tr>
+        <td> {{ x }} </td>
+        <td> {{ y }}</td>
+      </tr>
+    {% endfor %}
+</tbody>
+</table>
+{% else %}
+<p>No DB stats received.</p>
+{% endif %}
+</div>
+
+
+<table>
+{% for i, j in nob %}
+    <tr>
+        <td>{{ i }}</td>
+        <td>{{ j }}</td>
+    </tr>
+{% endfor %}
+</table>
 
 <br></br>
 

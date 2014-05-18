@@ -3,6 +3,7 @@ from django.shortcuts import render, render_to_response, RequestContext
 from django.http import HttpResponsePermanentRedirect
 import datetime
 from chartit import DataPool, Chart
+import pymongo
 # Create your views here.
 
 def ratesmonitor(request):
@@ -38,6 +39,37 @@ def ratesmonitor(request):
                }},
             x_sortf_mapf_mts = (None, timestring, False))
 
+    def get_db_stats(db_name):
+        keys, values = [], []
+
+        db = pymongo.Connection()[db_name]
+        result = db.command("dbStats")
+        
+        storageSize_in = result['storageSize']
+
+        keys.append('Size on %s on disk [MB]' % db_name)
+        values.append('%d' % (result['storageSize'] / 1024. / 1024.))
+
+        keys.append('Size of %s data [MB]' % db_name)
+        values.append('%d' % (result['dataSize'] / 1024. / 1024.))
+                   
+        for name in db.collection_names():
+            name = str(name)
+            if not name.startswith('dataset'):
+                continue
+            if db_name == 'input':
+                keys.append('Occurences in %s to be built' % (name))
+            else:
+                keys.append('Built events in %s' % (name))
+            values.append(db[name].count())
+        return zip(keys, values)
+    
+    db_stats = get_db_stats('input') + get_db_stats('output')
+    print(db_stats)
+
     #now get DAQ status
     #status = DAQStatus.objects.latest('createdAt')
-    return render_to_response('trigger/index.html',{'ratesmonitor_chart': cht},context_instance=RequestContext(request))
+    return render_to_response('trigger/index.html',
+                              {'ratesmonitor_chart': cht,
+                               'db_stats' : db_stats},
+                              context_instance=RequestContext(request))
